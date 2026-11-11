@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1121">
+  <meta name="description" content="Trilha CSS: 20 desafios práticos de seletores, Box Model, Flexbox, Grid, posicionamento e responsividade para estudantes de Design Web.">
+  <title>Trilha CSS • Desafios de Design Web</title>
+  <style>
+:root{--bg:#080f1d;--surface:#0d1729;--surface2:#121f34;--surface3:#18263b;--line:#26344a;--text:#f3f7ff;--muted:#9babc3;--primary:#a0f1cc;--primary-dark:#113526;--violet:#ad9bff;--amber:#f7c87c;--danger:#ff8f9e;--shadow:0 15px 50px rgba(0,0,0,.2)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--primary);outline-offset:3px}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin-top:0}button:disabled{cursor:not-allowed;opacity:.55}[hidden]{display:none!important}
+.app-shell{display:grid;grid-template-columns:264px minmax(0,1fr);min-height:100vh}.sidebar{height:100vh;position:sticky;top:0;display:flex;flex-direction:column;background:#0c1627;border-right:1px solid var(--line);z-index:20}.brand{min-height:88px;display:flex;gap:12px;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}.brand-mark{height:39px;width:39px;display:grid;place-items:center;border:1px solid #436a60;background:#183c36;color:var(--primary);border-radius:12px;font-weight:900;font-size:17px;letter-spacing:-4px;padding-right:4px}.brand strong{font-size:22px;letter-spacing:-1.2px;line-height:1;display:block}.brand-accent{color:var(--primary)}.brand small{display:block;color:#8298b0;font-size:9px;font-weight:800;letter-spacing:2px;margin-top:7px}.sidebar-scroll{padding:25px 12px 10px;overflow:auto;scrollbar-color:#35455f transparent;flex:1}.course-meta{color:#98a9bd;font-size:9px;font-weight:900;letter-spacing:1px;display:flex;align-items:center;gap:7px;padding:0 12px 17px;white-space:nowrap}.status-dot,.live-dot{width:7px;height:7px;display:inline-block;background:#6fe4b1;border-radius:99px;box-shadow:0 0 9px #6fe4b175;flex-shrink:0}.course-num{color:#7186a0;margin-left:auto}.progress-card{margin:0 8px 25px;padding:16px;background:#142138;border:1px solid #2c405b;border-radius:13px}.progress-header,.progress-foot{display:flex;justify-content:space-between;gap:10px;align-items:center}.progress-header span{color:#c3d0e0;font-size:12px}.progress-header strong{font-size:13px;color:var(--primary)}.progress-track{height:7px;background:#283a4e;border-radius:30px;overflow:hidden;margin:12px 0 8px}.progress-track>div{height:100%;width:0%;transition:width .35s;background:linear-gradient(90deg,#5fcca7,#a8f4d4);border-radius:30px}.progress-foot{color:#899cb4;font-size:10px;font-weight:700}.progress-foot span:last-child{color:var(--amber)}.module-name{font-size:10px;color:#8295af;letter-spacing:1.3px;font-weight:900;text-transform:uppercase;padding:12px 14px 7px;margin-top:5px}.module-group{margin-bottom:10px}.level-link{width:100%;border:1px solid transparent;background:transparent;color:#a5b5cc;display:flex;align-items:center;gap:11px;text-align:left;padding:10px 11px;border-radius:9px;transition:background .15s,color .15s}.level-link:hover{background:#18263a;color:white}.level-link.active{background:#1d3a38;border-color:#347161;color:#effff9}.level-link .level-number{display:grid;place-items:center;width:28px;height:28px;background:#1a293e;border:1px solid #32445c;border-radius:8px;font-size:11px;font-weight:800;color:#8da2ba;flex-shrink:0}.level-link.active .level-number{background:#2c6253;border-color:#589d87;color:white}.level-link.done .level-number{color:#a5f4d2;border-color:#407d6c}.level-link .level-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600;flex:1}.level-check{font-size:13px;color:#9ef0c7}.sidebar-footer{padding:18px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px;color:#8295ac;font-size:11px}.subtle-action{border:0;background:none;color:#a9c7d6;text-decoration:underline;text-align:left;padding:0;font-size:11px;width:max-content}.subtle-action:hover{color:white}
+.content{min-width:0}.topbar{height:75px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #223147;background:#0b1423;padding:0 38px;position:sticky;top:0;z-index:10}.breadcrumb{color:#8ea2bd;font-size:10px;letter-spacing:1.1px;font-weight:850}.breadcrumb span:last-child{color:#e3edf8}.breadcrumb-sep{margin:0 11px;color:#52647f}.topbar-actions{display:flex;align-items:center;gap:22px}.online-pill{display:flex;align-items:center;gap:8px;color:#a1b5ca;font-size:10px;font-weight:800;letter-spacing:.55px}.topbar-btn{color:#effff9;border:1px solid #345548;background:#19332e;border-radius:10px;padding:10px 15px;font-size:12px;font-weight:800;display:flex;gap:7px;align-items:center}.topbar-btn:hover{background:#23473b}.mobile-menu{display:none;border:1px solid var(--line);color:white;background:#182538;border-radius:9px;padding:8px 12px;font-size:18px}.page-wrap{max-width:1470px;margin:auto;padding:31px 36px 27px}.hero{border:1px solid #2c4353;background:radial-gradient(ellipse at 80% 90%,#193b4b 0,transparent 55%),linear-gradient(115deg,#132737,#122238 55%,#172b45);border-radius:18px;min-height:240px;display:flex;position:relative;overflow:hidden;padding:31px 35px;justify-content:space-between;gap:32px}.hero:after{content:"";position:absolute;right:8px;bottom:-80px;width:370px;height:220px;border:1px solid #9ef5be25;border-radius:50%;transform:rotate(-20deg)}.hero-copy{max-width:620px;position:relative;z-index:2}.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--primary);font-size:10px;letter-spacing:2px;font-weight:900}.eyebrow-line{width:20px;height:1px;background:var(--primary)}.hero h1{font-size:clamp(32px,4vw,51px);line-height:1.09;letter-spacing:-2.2px;margin:16px 0}.hero h1 span{color:var(--primary)}.hero p{color:#aec3d3;font-size:13px;line-height:1.7;max-width:520px;margin-bottom:18px}.hero-tags{display:flex;flex-wrap:wrap;gap:8px}.hero-tags span{border:1px solid #446074;background:#13283b99;color:#c9d9e7;border-radius:99px;padding:6px 11px;font-size:10px;font-weight:700}.hero-art{flex-shrink:0;align-self:center;width:260px;height:170px;background:#0f1a2ae8;border:1px solid #57708a;border-radius:15px;transform:rotate(6deg);padding:16px 18px;box-shadow:0 25px 55px #0005;position:relative;z-index:1}.window-dots{display:flex;gap:5px;margin-bottom:19px}.window-dots i{height:7px;width:7px;background:#fb859a;border-radius:50%}.window-dots i:nth-child(2){background:#ffcc84}.window-dots i:nth-child(3){background:#86e5c0}.mock-line{display:flex;align-items:center;gap:10px;margin:10px 0}.mock-line b{width:32px;height:8px;border-radius:4px;background:#9c8ffe}.mock-line span{width:120px;height:7px;background:#39536d;border-radius:4px}.mock-line.short span{width:90px}.mock-line.mid span{width:135px}.mock-cards{display:flex;gap:8px;margin-top:18px}.mock-cards i{flex:1;height:30px;background:linear-gradient(135deg,#264961,#358779);border-radius:6px}.mock-cards i:nth-child(2){background:linear-gradient(135deg,#393e71,#7265b2)}.mock-code{position:absolute;right:-13px;bottom:-17px;background:#1b3b33;color:#c2f5d9;padding:9px;border:1px solid #448574;border-radius:7px;font:10px ui-monospace,monospace;box-shadow:0 9px 15px #0006}.mock-code em{color:var(--amber);font-style:normal}.mock-code span{color:#9ca9ff}
+.section-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:29px 3px 13px}.section-label{display:flex;align-items:center;gap:9px;color:#eff4fa;font-size:11px;font-weight:900;letter-spacing:1.6px}.section-marker{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;background:#23453c;color:var(--primary);font-size:10px;letter-spacing:0}.muted-small{color:#7f93aa;font-size:10px;letter-spacing:1px;font-weight:900}.mission-card{background:#101b2c;border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:var(--shadow)}.mission-head{display:flex;align-items:center;justify-content:space-between;padding:25px 29px 19px;gap:20px}.mission-meta{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap}.level-pill{color:#bdf8dd;background:#20413d;border:1px solid #3b7462;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:900;letter-spacing:.8px}.difficulty{color:#cabdff;background:#332d56;border:1px solid #5e538c;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:900;letter-spacing:.8px}.solved-badge{color:#bbf7d9;font-size:10px;font-weight:900}.mission-head h2{font-size:clamp(23px,2.5vw,30px);letter-spacing:-1px;line-height:1.25;margin:0 0 7px}.mission-head p{margin:0;color:#9cacc5;font-size:13px;max-width:740px;line-height:1.6}.mission-icon{height:60px;width:60px;border-radius:16px;background:#213448;border:1px solid #3a5770;display:grid;place-items:center;font-size:30px;flex-shrink:0}.objective{display:flex;align-items:start;gap:11px;margin:0 29px 24px;padding:13px 15px;border:1px solid #355c53;border-left:3px solid #8fefbb;border-radius:9px;background:#142d2b}.objective-symbol{font-size:19px;font-weight:800;color:var(--primary);line-height:1.1}.objective strong{color:var(--primary);font-size:10px;letter-spacing:1.3px}.objective p{color:#d5e9e1;margin:3px 0 0;font-size:12px;line-height:1.5}.workspace{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}.editor-pane,.preview-pane{min-width:0;padding:20px 23px 23px}.editor-pane{border-right:1px solid var(--line)}.pane-heading{display:flex;justify-content:space-between;align-items:center;gap:9px;margin-bottom:12px;min-height:29px}.pane-title{font-size:12px;font-weight:900;color:#e2ebf7;display:inline-flex;gap:9px;align-items:center}.pane-icon{font-size:18px;color:#a5b7cb;font-weight:400}.file-tab{display:flex;align-items:center;gap:8px;font-size:11px;color:#a9bdd3;background:#1e3045;padding:6px 10px;border-radius:6px}.live-dot{width:6px;height:6px}.editor-outer{background:#08111f;border:1px solid #344961;border-radius:11px;overflow:hidden}.editor-outer textarea{display:block;resize:vertical;min-height:285px;max-height:650px;height:285px;padding:20px;width:100%;border:0;outline:none;background:transparent;color:#cbecff;font:13px/1.8 "Cascadia Code",Consolas,"Courier New",monospace;tab-size:2;white-space:pre;overflow:auto}.editor-outer textarea::placeholder{color:#61748b}.editor-outer:focus-within{border-color:#84d9b4;box-shadow:0 0 0 2px #80e9bd22}.editor-bottom{display:flex;justify-content:space-between;gap:5px;color:#697e99;margin-top:9px;font-size:10px}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:9px;border:1px solid transparent;padding:10px 14px;min-height:40px;font-weight:850;font-size:11px;transition:filter .15s,background .15s}.btn:hover{filter:brightness(1.13)}.btn-primary{background:var(--primary);color:#103224}.btn-outline{border-color:#456078;color:#e1edf7;background:#1b2e44}.btn-ghost{color:#9bacbf;background:transparent;padding-left:9px;padding-right:9px}.btn-next{background:#2b4d80;border:1px solid #4c79be;color:#e7f0ff;margin-top:12px;width:100%}.hint-box{background:#362d21;border:1px solid #786040;border-radius:9px;padding:13px;color:#ffdda8;font-size:12px;margin-top:13px}.feedback{border-radius:10px;padding:14px;margin-top:12px;font-size:12px;line-height:1.55}.feedback.success{background:#19372f;border:1px solid #41856d;color:#d4ffea}.feedback.error{background:#3a242f;border:1px solid #895061;color:#ffe1e8}.feedback strong{display:block;margin-bottom:5px}.feedback ul{padding-left:18px;margin:7px 0 0}.feedback li{margin:3px 0}.device-switch{display:flex;padding:3px;border-radius:7px;background:#17263c;border:1px solid #31445c;gap:3px}.device-switch button{border:none;border-radius:5px;color:#8196b0;background:none;min-width:34px;height:25px;font-size:18px;line-height:1}.device-switch button[aria-pressed="true"]{color:#e8fff1;background:#315d53}.preview-viewport{position:relative;height:306px;display:flex;justify-content:flex-start;align-items:stretch;overflow:auto;background-color:#0a1220;background-image:linear-gradient(#2939504d 1px,transparent 1px),linear-gradient(90deg,#2939504d 1px,transparent 1px);background-size:18px 18px;border:1px solid #334963;border-radius:11px;padding:10px}.preview-viewport iframe{position:absolute;left:10px;top:10px;width:720px;min-width:720px;height:100%;border:0;border-radius:7px;background:white;display:block}.preview-caption{display:flex;justify-content:space-between;gap:12px;margin:10px 0 11px;color:#8497aa;font-size:10px;letter-spacing:1px;font-weight:900}.preview-caption>span:first-child{display:flex;align-items:center;gap:7px}.html-details{border:1px solid #354961;border-radius:9px;background:#152339;overflow:hidden}.html-details summary{padding:12px 14px;cursor:pointer;color:#bfd1e8;font-weight:750;font-size:11px}.html-details pre{color:#bfd1df;white-space:pre-wrap;overflow-wrap:anywhere;padding:15px;margin:0;border-top:1px solid #354961;background:#0c1524;font:11px/1.7 ui-monospace,Consolas,monospace;max-height:260px;overflow:auto}.bottom-sections{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:20px}.tip-card,.external-card{border:1px solid #26384d;background:#101d30;border-radius:13px;padding:21px;min-width:0}.tip-card{display:flex;gap:15px}.tip-icon{color:#b2f5d8;font-size:24px}.bottom-sections h3{font-size:14px;margin:0 0 6px}.bottom-sections p{font-size:11px;color:#9fb2c9;line-height:1.65;margin-bottom:7px}.external-title{display:flex;gap:12px}.external-title>span{color:#af9bff;font-size:22px}.external-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.external-links a{color:#cbd9ef;border:1px solid #38526c;background:#172a40;padding:6px 9px;border-radius:7px;font-size:10px}.external-links a:hover{background:#2b4861;color:white}.page-footer{display:flex;justify-content:space-between;gap:10px;margin-top:25px;font-size:10px;color:#657c98}.mobile-overlay{position:fixed;inset:0;background:#000a;z-index:15}.report-dialog{border:1px solid #415975;background:#111e31;color:var(--text);width:min(560px,calc(100vw - 24px));max-height:90vh;overflow:auto;border-radius:17px;box-shadow:0 30px 90px #000a;padding:0}.report-dialog::backdrop{background:#020815b8}.dialog-top{padding:25px 26px 13px;display:flex;justify-content:space-between;align-items:start}.dialog-top h2{font-size:25px;margin:8px 0 0}.close-dialog{border:0;background:#22334c;color:white;height:34px;width:34px;border-radius:8px;font-size:25px}.report-body{padding:0 26px 26px}.report-body p{font-size:12px;color:#a7bdd2}.report-body label{display:block;margin:12px 0 5px;font-size:11px;color:#c8dcef;font-weight:750}.report-body input{width:100%;color:#fff;background:#0a1423;border:1px solid #37506b;border-radius:9px;padding:11px}.report-summary{margin-top:18px;background:#1a3041;border:1px solid #36566b;border-radius:11px;padding:14px;font-size:12px;max-height:230px;overflow:auto}.report-summary b{color:#b0f4d8}.report-summary ul{margin:10px 0 0;padding-left:17px}.report-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.report-note{min-height:18px;margin:9px 0 0;color:#b9f4d6!important}.mobile-menu,.mobile-overlay{display:none}
+@media(max-width:1150px){.app-shell{grid-template-columns:236px minmax(0,1fr)}.page-wrap{padding:25px 22px}.topbar{padding:0 24px}.hero-art{width:210px}.workspace{grid-template-columns:1fr}.editor-pane{border-right:0;border-bottom:1px solid var(--line)}.preview-viewport{height:318px}}
+@media(max-width:820px){.app-shell{display:block}.sidebar{width:270px;position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .22s}.sidebar.open{transform:translateX(0)}.mobile-menu{display:block}.mobile-overlay:not([hidden]){display:block}.topbar{padding:0 18px;height:65px}.online-pill{display:none}.hero-art{display:none}.hero{min-height:auto;padding:28px}.bottom-sections{grid-template-columns:1fr}.page-wrap{padding:19px 15px}.breadcrumb{font-size:9px}.topbar-btn{padding:9px}.mission-head{padding:21px 18px 15px}.objective{margin:0 18px 20px}.editor-pane,.preview-pane{padding:17px}.editor-outer textarea{min-height:225px;height:225px}.page-footer{flex-direction:column}.mission-icon{height:48px;width:48px;font-size:25px}}
+@media(max-width:440px){.topbar-btn span{display:none}.hero h1{letter-spacing:-1.5px}.hero{padding:22px}.hero-tags{gap:5px}.hero-tags span{font-size:9px}.mission-head{align-items:start}.mission-icon{width:41px;height:41px;font-size:20px;border-radius:12px}.actions .btn{flex:1}.actions .btn-ghost{flex-basis:100%}.editor-bottom span:last-child{display:none}.report-actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Dicas contextualizadas: código + exemplo ao vivo (versão 2). */
+.hint-box{background:#152a32;border:1px solid #3b685f;border-left:4px solid #83e3b6;border-radius:12px;padding:18px;color:#e7f4ee;font-size:12px;margin-top:14px;line-height:1.6;}
+.hint-heading{font-size:15px;color:#bdf8dc;margin:0 0 9px;font-weight:850;}
+.hint-concept{margin:0 0 18px;color:#d9e7e6;}
+.hint-label{font-size:10px;font-weight:900;letter-spacing:1px;color:#a4edd0;margin:16px 0 6px;}
+.hint-example-title{font-size:14px;margin:0 0 4px;color:#f7fbff;}
+.hint-context{margin:0 0 12px;color:#c1d4dd;}
+.hint-snippets{display:grid;grid-template-columns:1fr;gap:9px;}
+.hint-snippet{min-width:0;border:1px solid #3b5260;border-radius:8px;background:#091521;overflow:hidden;}
+.hint-code-label{color:#96b7c7;font-size:10px;font-weight:800;letter-spacing:.8px;background:#142436;padding:5px 10px;border-bottom:1px solid #3b5260;}
+.hint-snippet pre{margin:0;padding:11px;max-height:200px;overflow:auto;color:#b6e5ff;font:11px/1.65 "Cascadia Code",Consolas,"Courier New",monospace;white-space:pre;tab-size:2;}
+.hint-snippet code{font:inherit;}
+.hint-live-label{margin-top:14px;}
+.hint-example-preview{display:block;width:100%;height:148px;border:1px solid #8aa7ab;border-radius:8px;background:#fff;}
+.hint-why,.hint-apply{margin:11px 0 0;color:#d6e9e9;}
+.hint-apply{border-left:2px solid #a5f3c8;padding-left:10px;}
+.hint-note{margin:12px 0 0;color:#a3b9c1;font-size:11px;font-style:italic;}
+.hint-solution-banner{border-radius:7px;padding:10px;background:#204936;color:#c3f4d8;margin:0 0 13px;font-weight:750;}
+@media(max-width:600px){.hint-box{padding:13px}.hint-snippet pre{font-size:10px}}
+
+/* Legibilidade dos exemplos — propriedades em linhas separadas. */
+.hint-snippet pre{font-size:12px;line-height:1.75;max-height:340px;padding:13px 14px;white-space:pre;overflow-x:auto;overflow-y:auto;}
+.hint-code-label{font-size:11px;padding:8px 12px;}
+@media(max-width:600px){.hint-snippet pre{font-size:11px;line-height:1.7;max-height:300px;}}
+
+</style>
+  
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação dos desafios">
+      <a class="brand" href="#inicio" aria-label="Trilha CSS — início">
+        <span class="brand-mark" aria-hidden="true">{ }</span>
+        <span><strong>trilha<span class="brand-accent">css</span></strong><small>DESIGN WEB LAB</small></span>
+      </a>
+      <div class="sidebar-scroll">
+        <div class="course-meta"><span class="status-dot"></span> APRENDA NA PRÁTICA <span class="course-num">20 MISSÕES</span></div>
+        <div class="progress-card">
+          <div class="progress-header"><span>Seu progresso</span><strong id="progress-label">0 / 20</strong></div>
+          <div class="progress-track"><div id="progress-fill"></div></div>
+          <div class="progress-foot"><span id="progress-pct">0% concluído</span><span id="xp-count">0 XP</span></div>
+        </div>
+        <nav id="level-nav" aria-label="Lista de desafios"></nav>
+      </div>
+      <div class="sidebar-footer"><span>Feito para explorar, errar e aprender.</span><button id="reset-progress" class="subtle-action" type="button">Reiniciar progresso</button></div>
+    </aside>
+
+    <main class="content" id="inicio">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menu">☰</button>
+        <div class="breadcrumb">TRILHA DE APRENDIZAGEM <span class="breadcrumb-sep">/</span> <span id="breadcrumb-module">Fundamentos</span></div>
+        <div class="topbar-actions"><span class="online-pill"><span class="status-dot"></span> 100% NO NAVEGADOR</span><button class="topbar-btn" id="report-btn" type="button">▤ <span>Meu relatório</span></button></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> LABORATÓRIO INTERATIVO DE CSS</div>
+            <h1>Do código à <span>interface.</span></h1>
+            <p>Você já dominou o posicionamento dos sapos e das torres. Agora é hora de construir interfaces reais, um desafio de cada vez.</p>
+            <div class="hero-tags"><span>◈ 20 desafios</span><span>⌘ Editor ao vivo</span><span>◷ Salva seu progresso</span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div class="mock-line short"><b></b><span></span></div>
+            <div class="mock-line"><b></b><span></span></div>
+            <div class="mock-line mid"><b></b><span></span></div>
+            <div class="mock-cards"><i></i><i></i><i></i></div>
+            <div class="mock-code">.idea <em>{</em> <span>display: grid;</span> <em>}</em></div>
+          </div>
+        </section>
+
+        <section class="mission-section" aria-labelledby="challenge-heading">
+          <div class="section-top"><div class="section-label"><span class="section-marker">01</span> ÁREA DE DESAFIOS</div><span id="level-count" class="muted-small">DESAFIO 01 DE 20</span></div>
+          <article class="mission-card">
+            <div class="mission-head">
+              <div><div class="mission-meta"><span class="level-pill" id="level-pill">NÍVEL 01</span><span class="difficulty" id="difficulty">INICIANTE</span><span id="solved-badge" class="solved-badge" hidden>✓ CONCLUÍDO</span></div><h2 id="challenge-heading">Carregando desafio...</h2><p id="challenge-description"></p></div>
+              <div class="mission-icon" id="mission-icon" aria-hidden="true">🎮</div>
+            </div>
+            <div class="objective"><div class="objective-symbol">↗</div><div><strong>SUA MISSÃO</strong><p id="challenge-objective"></p></div></div>
+            <div class="workspace">
+              <section class="editor-pane" aria-labelledby="editor-title">
+                <div class="pane-heading"><span class="pane-title" id="editor-title"><span class="pane-icon">⌨</span> Editor CSS</span><span class="file-tab">style.css <span class="live-dot"></span></span></div>
+                <div class="editor-outer"><textarea id="css-editor" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Digite seu CSS neste editor" placeholder="/* Escreva seu CSS aqui */"></textarea></div>
+                <div class="editor-bottom"><span>CSS • Escreva, teste, melhore.</span><span>Ctrl + Enter para verificar</span></div>
+                <div class="actions"><button id="check-btn" class="btn btn-primary" type="button">▶ Verificar código</button><button id="hint-btn" class="btn btn-outline" type="button" aria-controls="hint-box" aria-expanded="false">💡 Dica + exemplo</button><button id="solution-btn" class="btn btn-ghost" type="button">Ver solução</button></div>
+                <div id="hint-box" class="hint-box" hidden></div>
+                <div id="feedback" role="status" aria-live="polite" class="feedback" hidden></div>
+                <button id="next-btn" type="button" class="btn btn-next" hidden>Próximo desafio →</button>
+              </section>
+              <section class="preview-pane" aria-labelledby="preview-title">
+                <div class="pane-heading"><span class="pane-title" id="preview-title"><span class="pane-icon">◫</span> Pré-visualização</span><div class="device-switch" role="group" aria-label="Largura da pré-visualização"><button id="desktop-view" aria-pressed="true" title="Visualização desktop" type="button">▣</button><button id="mobile-view" aria-pressed="false" title="Visualização celular" type="button">▯</button></div></div>
+                <div class="preview-viewport" id="preview-viewport"><iframe id="preview-frame" title="Prévia do HTML com o CSS digitado" sandbox="allow-same-origin"></iframe></div>
+                <div class="preview-caption"><span><span class="status-dot"></span> <span id="preview-status">PRÉVIA AO VIVO</span></span><span id="preview-size">720 PX</span></div>
+                <details class="html-details"><summary>◇ Ver estrutura HTML do desafio</summary><pre><code id="html-source"></code></pre></details>
+              </section>
+            </div>
+          </article>
+        </section>
+
+        <section class="bottom-sections" aria-label="Recursos complementares">
+          <div class="tip-card"><span class="tip-icon">✦</span><div><h3>Aprendizado na prática</h3><p>Explore o HTML, escreva suas regras no editor e clique em <strong>Verificar código</strong>. As verificações avaliam o resultado no navegador, não apenas uma resposta decorada. Em <strong>Dica + exemplo</strong>, veja uma aplicação real da propriedade com HTML, CSS e prévia visual — sem revelar a solução da missão.</p><p>Para o <strong>caderno digital</strong>, registre prints dos desafios concluídos com o código e a prévia.</p></div></div>
+          <div class="external-card"><div class="external-title"><span>↗</span><div><h3>Quer ir além?</h3><p>Outros jogos para praticar CSS.</p></div></div><div class="external-links"><a href="https://flexboxfroggy.com/#pt-br" target="_blank" rel="noopener noreferrer">Flexbox Froggy ↗</a><a href="http://www.flexboxdefense.com/" target="_blank" rel="noopener noreferrer">Flexbox Defense ↗</a><a href="https://cssgridgarden.com/#pt-br" target="_blank" rel="noopener noreferrer">Grid Garden ↗</a><a href="https://flukeout.github.io/" target="_blank" rel="noopener noreferrer">CSS Diner ↗</a><a href="https://cssbattle.dev/" target="_blank" rel="noopener noreferrer">CSSBattle ↗</a></div></div>
+        </section>
+        <footer class="page-footer"><span>TRILHA CSS · Material educacional independente para Design Web</span><span>HTML + CSS + JavaScript · Sem cadastro</span></footer>
+      </div>
+    </main>
+  </div>
+  <div id="mobile-overlay" class="mobile-overlay" hidden></div>
+  <dialog id="report-dialog" class="report-dialog" aria-labelledby="report-heading"><form method="dialog"><div class="dialog-top"><div><span class="eyebrow">RESUMO DE APRENDIZAGEM</span><h2 id="report-heading">Meu relatório</h2></div><button class="close-dialog" aria-label="Fechar relatório" value="close">×</button></div></form><div class="report-body"><p>Informe seus dados apenas se quiser incluí-los no relatório. Eles permanecem neste navegador.</p><label for="student-name">Nome do estudante</label><input id="student-name" maxlength="90" autocomplete="name" placeholder="Seu nome (opcional)"><label for="student-class">Turma</label><input id="student-class" maxlength="50" placeholder="Ex.: Design Web — Turma 1"><div id="report-summary" class="report-summary"></div><div class="report-actions"><button id="copy-report" class="btn btn-outline" type="button">Copiar resumo</button><button id="download-report" class="btn btn-primary" type="button">↓ Baixar relatório (.txt)</button></div><p id="report-note" class="report-note" role="status"></p></div></dialog>
+<script>
+/*
+ * TRILHA CSS — 20 desafios autocontidos.
+ * Para editar os conteúdos, altere a lista LEVELS. Os testes avaliam estilos
+ * efetivos no iframe e, nos casos especiais, regras CSSOM do estudante.
+ * Todo o progresso é local (localStorage), sem backend ou coleta remota.
+ */
+'use strict';
+
+const SVG_COVER = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330"><defs><linearGradient id="a" x2="1" y2="1"><stop stop-color="#4538a0"/><stop offset="1" stop-color="#0fbdba"/></linearGradient></defs><rect width="720" height="330" fill="url(#a)"/><circle cx="545" cy="165" r="125" fill="#ffffff" opacity=".12"/><circle cx="615" cy="64" r="70" fill="#ffffff" opacity=".1"/><path d="M0 300 175 112l120 114 110-88 185 190" stroke="#b7f4f6" stroke-width="16" fill="none" opacity=".7"/><text x="44" y="90" fill="white" font-size="43" font-family="Arial" font-weight="700">GAME FEST</text><text x="45" y="129" fill="#d9d0ff" font-family="Arial" font-size="20">Cultura digital e criatividade</text></svg>`);
+
+const MODULES = [
+  {name:'Visual e Box Model',range:[1,4]},
+  {name:'Textos e seletores',range:[5,7]},
+  {name:'Flexbox na prática',range:[8,10]},
+  {name:'Layouts com Grid',range:[11,13]},
+  {name:'Posição e imagens',range:[14,16]},
+  {name:'Interação e responsividade',range:[17,20]}
+];
+
+const test = (label,selector,prop,value)=>({label,type:'style',selector,prop,value});
+const col = (label,selector,value)=>({label,type:'columns',selector,value});
+const rule = (label,selector,prop,value)=>({label,type:'rule',selector,prop,value});
+
+const LEVELS = [
+  {
+    title:'Perfil gamer',icon:'🎮',difficulty:'Iniciante',
+    description:'Um perfil da comunidade ficou sem identidade visual. Você vai definir a aparência do card.',
+    objective:'Na classe .perfil, aplique fundo #1e293b, texto branco e cantos arredondados de 16px.',
+    html:`<main class="demo"><article class="perfil"><span class="overline">COMUNIDADE / PERFIL</span><div class="emoji-big">🎮</div><h2>PixelRider</h2><p>Jogador • Nível 42</p><div class="mini-tags"><span>HTML</span><span>CSS</span><span>GAME</span></div></article></main>`,
+    starter:'/* Personalize o card do jogador */\n.perfil {\n  \n}',
+    solution:'.perfil {\n  background-color: #1e293b;\n  color: white;\n  border-radius: 16px;\n}',
+    hint:'O fundo é controlado por background-color, a cor dos textos por color e os cantos por border-radius.',
+    tests:[test('O fundo é #1e293b','.perfil','backgroundColor','rgb(30, 41, 59)'),test('O texto é branco','.perfil','color','rgb(255, 255, 255)'),test('Os cantos têm 16px','.perfil','borderTopLeftRadius','16px')]
+  },
+  {
+    title:'Medalha do campeonato',icon:'🏅',difficulty:'Iniciante',
+    description:'A medalha de um torneio merece um contorno que chame a atenção.',
+    objective:'Na classe .medalha, crie uma borda sólida de 3px na cor #8b5cf6 e um border-radius de 30px.',
+    html:`<main class="demo"><div class="medalha">🏅 <span>CAMPEÃO DA SEMANA</span></div><p class="helper-text">Sua conquista em destaque.</p></main>`,
+    starter:'/* Melhore o contorno da medalha */\n.medalha {\n  \n}',
+    solution:'.medalha {\n  border: 3px solid #8b5cf6;\n  border-radius: 30px;\n}',
+    hint:'A sintaxe reduzida border permite informar espessura, estilo e cor em uma única declaração.',
+    tests:[test('Borda com 3px','.medalha','borderTopWidth','3px'),test('Borda sólida','.medalha','borderTopStyle','solid'),test('Borda roxa','.medalha','borderTopColor','rgb(139, 92, 246)'),test('Arredondamento de 30px','.medalha','borderTopLeftRadius','30px')]
+  },
+  {
+    title:'Espaço para respirar',icon:'💬',difficulty:'Iniciante',
+    description:'O conteúdo de uma mensagem está muito apertado. Vamos usar o Box Model.',
+    objective:'Na classe .mensagem, aplique padding de 24px e margin-bottom de 20px.',
+    html:`<main class="demo"><div class="chat-window"><div class="mensagem"><strong>Equipe de design</strong><p>Nosso protótipo ficou incrível! 🚀</p></div><div class="mensagem secundario"><strong>Você</strong><p>Hora de publicar a primeira versão.</p></div></div></main>`,
+    starter:'/* Espaçamento INTERNO e EXTERNO */\n.mensagem {\n  \n}',
+    solution:'.mensagem {\n  padding: 24px;\n  margin-bottom: 20px;\n}',
+    hint:'padding é o espaço dentro da caixa; margin é o espaço fora dela. Use margin-bottom para separar mensagens.',
+    tests:[test('Padding interno de 24px','.mensagem','paddingTop','24px'),test('Padding lateral de 24px','.mensagem','paddingLeft','24px'),test('Margem inferior de 20px','.mensagem','marginBottom','20px')]
+  },
+  {
+    title:'Card no tamanho certo',icon:'📐',difficulty:'Iniciante',
+    description:'O cartão de notícias não deve ficar largo demais em telas grandes.',
+    objective:'Na classe .noticia, defina width: 100%, max-width: 420px e box-sizing: border-box.',
+    html:`<main class="demo"><article class="noticia"><span class="overline">NEWS / TECNOLOGIA</span><h2>Festival Criativo 2026</h2><p>Novos projetos, ideias e experiências em tecnologia.</p><a class="fake-link">Saiba mais →</a></article></main>`,
+    starter:'/* Defina limites para o card */\n.noticia {\n  \n}',
+    solution:'.noticia {\n  width: 100%;\n  max-width: 420px;\n  box-sizing: border-box;\n}',
+    hint:'width: 100% usa a largura disponível; max-width limita o crescimento. border-box inclui bordas e padding na largura.',
+    tests:[test('Largura máxima de 420px','.noticia','maxWidth','420px'),test('Dimensão com border-box','.noticia','boxSizing','border-box'),rule('Largura configurada em 100%','.noticia','width','100%')]
+  },
+  {
+    title:'Título do evento',icon:'🎤',difficulty:'Iniciante',
+    description:'O título de um evento precisa de uma hierarquia visual clara.',
+    objective:'Na classe .headline, use font-size de 32px, font-weight de 800 e line-height de 1.2.',
+    html:`<main class="demo"><div class="event-card"><span class="overline">AO VIVO / SEXTA-FEIRA</span><h2 class="headline">Festival de Música e Tecnologia</h2><p>Uma experiência que conecta ideias, pessoas e criatividade.</p><button class="demo-button">Participar</button></div></main>`,
+    starter:'/* Destaque o título principal */\n.headline {\n  \n}',
+    solution:'.headline {\n  font-size: 32px;\n  font-weight: 800;\n  line-height: 1.2;\n}',
+    hint:'font-size controla o tamanho, font-weight a espessura e line-height o espaçamento vertical entre linhas.',
+    tests:[test('Fonte de 32px','.headline','fontSize','32px'),test('Peso 800','.headline','fontWeight','800'),{label:'Entrelinhas de 1.2',type:'near',selector:'.headline',prop:'lineHeight',value:38.4}]
+  },
+  {
+    title:'Líder do ranking',icon:'🏆',difficulty:'Intermediário',
+    description:'Você precisa destacar o primeiro lugar sem adicionar uma classe especial ao HTML.',
+    objective:'Selecione somente o primeiro li da lista .ranking com :first-child. Aplique cor #7c3aed e font-weight: 700.',
+    html:`<main class="demo"><div class="ranking-box"><span class="overline">RANKING SEMANAL</span><ol class="ranking"><li>🥇 LunaCoder <small>9.820 XP</small></li><li>🥈 DevFox <small>7.350 XP</small></li><li>🥉 NeoPixel <small>6.410 XP</small></li></ol></div></main>`,
+    starter:'/* Selecione apenas o primeiro colocado */\n.ranking li:first-child {\n  \n}',
+    solution:'.ranking li:first-child {\n  color: #7c3aed;\n  font-weight: 700;\n}',
+    hint:'A pseudoclasse :first-child identifica o elemento que ocupa a primeira posição entre os irmãos.',
+    tests:[test('Primeiro lugar em roxo','.ranking li:first-child','color','rgb(124, 58, 237)'),test('Primeiro lugar em negrito','.ranking li:first-child','fontWeight','700'),{label:'A segunda posição não deve ficar roxa',type:'not',selector:'.ranking li:nth-child(2)',prop:'color',value:'rgb(124, 58, 237)'}]
+  },
+  {
+    title:'Convite exclusivo',icon:'🎟️',difficulty:'Intermediário',
+    description:'Apenas o botão VIP deve receber uma cor diferente do botão comum.',
+    objective:'Selecione o botão com as classes .convite e .vip e aplique background-color: #7c3aed. Não altere o botão padrão.',
+    html:`<main class="demo"><div class="ticket-box"><span class="overline">INGRESSOS</span><h2>Game Night 🎲</h2><div class="ticket-buttons"><button class="convite">Ingresso comum</button><button class="convite vip">Ingresso VIP ★</button></div></div></main>`,
+    starter:'/* Duas classes no MESMO elemento */\n.convite.vip {\n  \n}',
+    solution:'.convite.vip {\n  background-color: #7c3aed;\n}',
+    hint:'Duas classes sem espaço (.convite.vip) significam que ambas devem existir no mesmo elemento.',
+    tests:[test('Botão VIP roxo','.convite.vip','backgroundColor','rgb(124, 58, 237)'),{label:'Botão comum permanece diferente',type:'not',selector:'.convite:not(.vip)',prop:'backgroundColor',value:'rgb(124, 58, 237)'}]
+  },
+  {
+    title:'Menu da comunidade',icon:'🧭',difficulty:'Intermediário',
+    description:'O logotipo e o menu devem ficar em extremidades opostas do cabeçalho.',
+    objective:'Na classe .topo, use display: flex, justify-content: space-between e align-items: center.',
+    html:`<main class="demo"><header class="topo"><strong>✦ COMUNIDADE</strong><nav><span>Início</span><span>Projetos</span><span>Perfil</span></nav></header><div class="landing-content"><h2>Bem-vindo à comunidade</h2><p>Seu espaço para compartilhar projetos.</p></div></main>`,
+    starter:'/* Distribua o cabeçalho */\n.topo {\n  \n}',
+    solution:'.topo {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}',
+    hint:'justify-content atua no eixo principal; align-items, no transversal. Ative Flexbox no contêiner.',
+    tests:[test('Contêiner flexível','.topo','display','flex'),test('Extremidades opostas','.topo','justifyContent','space-between'),test('Alinhamento vertical central','.topo','alignItems','center')]
+  },
+  {
+    title:'Cards em fila',icon:'🃏',difficulty:'Intermediário',
+    description:'Três conteúdos de um portal de jogos devem aparecer lado a lado.',
+    objective:'Na classe .cards, use display: flex e gap: 12px para organizar os cards.',
+    html:`<main class="demo"><h2 class="small-title">Destaques do dia</h2><div class="cards"><article class="mini-card">🕹️<strong>Arcade</strong><small>Clássicos</small></article><article class="mini-card">🎧<strong>Playlists</strong><small>Novidades</small></article><article class="mini-card">🎥<strong>Vídeos</strong><small>Criadores</small></article></div></main>`,
+    starter:'/* Alinhe os cartões */\n.cards {\n  \n}',
+    solution:'.cards {\n  display: flex;\n  gap: 12px;\n}',
+    hint:'display: flex coloca os filhos no eixo principal. gap define a distância entre eles.',
+    tests:[test('Cards em Flexbox','.cards','display','flex'),test('Espaço de 12px','.cards','gap','12px')]
+  },
+  {
+    title:'Fila que se adapta',icon:'🧩',difficulty:'Intermediário',
+    description:'Quando não houver espaço, os cards devem passar para a linha seguinte.',
+    objective:'Na classe .cards-flexiveis, aplique flex-wrap: wrap e gap: 12px. Nos filhos .card-flex, aplique flex-basis: 160px.',
+    html:`<main class="demo"><h2 class="small-title">Comunidades para seguir</h2><div class="cards-flexiveis"><div class="card-flex">🎨 Design</div><div class="card-flex">💻 Dev</div><div class="card-flex">🎮 Games</div><div class="card-flex">📷 Foto</div></div></main>`,
+    starter:'/* Distribuição com quebra de linha */\n.cards-flexiveis {\n  \n}\n\n.card-flex {\n  \n}',
+    solution:'.cards-flexiveis {\n  flex-wrap: wrap;\n  gap: 12px;\n}\n\n.card-flex {\n  flex-basis: 160px;\n}',
+    hint:'flex-wrap: wrap permite quebrar linhas. flex-basis define o tamanho inicial de cada item flexível.',
+    tests:[test('Permite quebra de linha','.cards-flexiveis','flexWrap','wrap'),test('Espaçamento entre os cards','.cards-flexiveis','gap','12px'),test('Largura inicial dos itens','.card-flex','flexBasis','160px')]
+  },
+  {
+    title:'Galeria de capas',icon:'🖼️',difficulty:'Intermediário',
+    description:'A página de cultura digital precisa de uma grade organizada com três colunas.',
+    objective:'Na classe .galeria, use display: grid, grid-template-columns: repeat(3, 1fr) e gap: 12px.',
+    html:`<main class="demo"><h2 class="small-title">Galeria criativa</h2><div class="galeria"><div class="art-tile">🌌</div><div class="art-tile">🎬</div><div class="art-tile">🎨</div><div class="art-tile">🎮</div><div class="art-tile">🎵</div><div class="art-tile">✨</div></div></main>`,
+    starter:'/* Monte uma grade de 3 colunas */\n.galeria {\n  \n}',
+    solution:'.galeria {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n}',
+    hint:'display: grid ativa a grade. repeat(3, 1fr) cria três colunas de tamanho igual.',
+    tests:[test('Galeria usa Grid','.galeria','display','grid'),col('Galeria possui 3 colunas','.galeria',3),test('Espaçamento de 12px','.galeria','gap','12px')]
+  },
+  {
+    title:'Painel de estatísticas',icon:'📊',difficulty:'Intermediário',
+    description:'Vamos montar o dashboard de uma comunidade com dois indicadores por linha.',
+    objective:'Na classe .painel, defina display: grid, duas colunas iguais e gap: 16px.',
+    html:`<main class="demo"><h2 class="small-title">Visão geral</h2><div class="painel"><div class="stat"><small>VISITAS</small><strong>12,4k</strong></div><div class="stat"><small>CURTIDAS</small><strong>8,2k</strong></div><div class="stat"><small>POSTAGENS</small><strong>432</strong></div><div class="stat"><small>SEGUIDORES</small><strong>1,9k</strong></div></div></main>`,
+    starter:'/* Duas colunas proporcionais */\n.painel {\n  \n}',
+    solution:'.painel {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 16px;\n}',
+    hint:'Use grid-template-columns para dividir o painel em duas colunas com a unidade fr.',
+    tests:[test('Painel usa Grid','.painel','display','grid'),col('Painel possui 2 colunas','.painel',2),test('Espaçamento de 16px','.painel','gap','16px')]
+  },
+  {
+    title:'Destaque da semana',icon:'⭐',difficulty:'Intermediário',
+    description:'O card de destaque precisa ocupar toda a largura da grade, ao contrário dos demais.',
+    objective:'Na classe .card-destaque, utilize grid-column: 1 / -1 para ocupar todas as colunas.',
+    html:`<main class="demo"><div class="grid-feature"><article class="feature-card card-destaque">🌟 <strong>Projeto em destaque</strong><small>Conheça as ideias desta semana</small></article><article class="feature-card">💡 <strong>Ideias</strong></article><article class="feature-card">🚀 <strong>Lançamentos</strong></article></div></main>`,
+    starter:'/* Faça o primeiro card atravessar a grade */\n.card-destaque {\n  \n}',
+    solution:'.card-destaque {\n  grid-column: 1 / -1;\n}',
+    hint:'Em um Grid, a linha 1 indica o começo e -1 a última linha explícita de grade.',
+    tests:[test('Começa na linha de grade 1','.card-destaque','gridColumnStart','1'),test('Termina na última linha','.card-destaque','gridColumnEnd','-1')]
+  },
+  {
+    title:'Selo de novidade',icon:'🔔',difficulty:'Intermediário',
+    description:'O selo NOVO deve aparecer dentro do canto superior direito de um card.',
+    objective:'Na classe .card-alerta, aplique position: relative. Na classe .notificacao, use position: absolute, top: 12px e right: 12px.',
+    html:`<main class="demo"><article class="card-alerta"><div class="notificacao">NOVO</div><div class="emoji-big">🚀</div><h2>Curso de criação digital</h2><p>Explore técnicas de desenvolvimento web.</p></article></main>`,
+    starter:'/* Pai de referência */\n.card-alerta {\n  \n}\n\n/* Elemento posicionado */\n.notificacao {\n  \n}',
+    solution:'.card-alerta {\n  position: relative;\n}\n\n.notificacao {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n}',
+    hint:'position: relative estabelece uma referência; position: absolute permite posicionar o filho em relação a essa referência.',
+    tests:[test('Card é referência relativa','.card-alerta','position','relative'),test('Selo está em posição absoluta','.notificacao','position','absolute'),test('Selo a 12px do topo','.notificacao','top','12px'),test('Selo a 12px da direita','.notificacao','right','12px')]
+  },
+  {
+    title:'Suporte sempre visível',icon:'💬',difficulty:'Intermediário',
+    description:'Um botão de suporte deve ficar preso ao canto inferior direito da janela.',
+    objective:'Na classe .suporte, aplique position: fixed, bottom: 16px e right: 16px.',
+    html:`<main class="demo"><div class="site-example"><span class="overline">CENTRAL DE AJUDA</span><h2>Precisa de uma mão?</h2><p>O botão de suporte deve acompanhar a tela, mesmo com rolagem.</p><button class="suporte">💬 Ajuda</button></div></main>`,
+    starter:'/* Botão sempre no canto da janela */\n.suporte {\n  \n}',
+    solution:'.suporte {\n  position: fixed;\n  bottom: 16px;\n  right: 16px;\n}',
+    hint:'position: fixed posiciona o elemento em relação à área de visualização do navegador.',
+    tests:[test('Botão com posição fixa','.suporte','position','fixed'),test('16px da base','.suporte','bottom','16px'),test('16px da direita','.suporte','right','16px')]
+  },
+  {
+    title:'Capa sem deformar',icon:'📷',difficulty:'Intermediário',
+    description:'A imagem de destaque deve preencher uma área definida sem ficar esticada.',
+    objective:'Na classe .capa, aplique width: 100%, height: 140px e object-fit: cover.',
+    html:`<main class="demo"><article class="cover-card"><img class="capa" src="${SVG_COVER}" alt="Arte abstrata de um festival digital"><h2>Game Fest</h2><p>Um festival de cultura digital.</p></article></main>`,
+    starter:'/* Ajuste da imagem de capa */\n.capa {\n  \n}',
+    solution:'.capa {\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n}',
+    hint:'object-fit: cover preenche a área preservando a proporção da imagem; parte dela pode ser cortada.',
+    tests:[test('Largura de 100%','.capa','width','100%',true),test('Altura de 140px','.capa','height','140px'),test('Imagem usa cover','.capa','objectFit','cover')]
+  },
+  {
+    title:'Botão com movimento',icon:'✨',difficulty:'Avançado',
+    description:'Uma microinteração deixa o botão mais interessante quando o mouse passa sobre ele.',
+    objective:'Na classe .botao-acao, aplique transition: transform 0.25s ease. Em .botao-acao:hover, use transform: translateY(-4px).',
+    html:`<main class="demo"><div class="action-display"><span class="overline">MICROINTERAÇÕES</span><h2>Seu próximo projeto começa aqui</h2><button class="botao-acao">Começar agora ↗</button><p>Passe o mouse sobre o botão para testar.</p></div></main>`,
+    starter:'/* Transição no estado normal */\n.botao-acao {\n  \n}\n\n/* Movimento ao passar o mouse */\n.botao-acao:hover {\n  \n}',
+    solution:'.botao-acao {\n  transition: transform 0.25s ease;\n}\n\n.botao-acao:hover {\n  transform: translateY(-4px);\n}',
+    hint:'transition define a animação gradual. O seletor :hover aplica a transformação durante a interação do mouse.',
+    tests:[test('Transição de 0.25s','.botao-acao','transitionDuration','0.25s'),rule('Regra :hover desloca o botão','.botao-acao:hover','transform','translateY(-4px)')]
+  },
+  {
+    title:'Cores reutilizáveis',icon:'🎨',difficulty:'Avançado',
+    description:'Em vez de repetir cores por toda a página, vamos criar uma variável CSS.',
+    objective:'Defina --cor-principal: #8b5cf6 em :root e use background-color: var(--cor-principal) na classe .acao-colorida.',
+    html:`<main class="demo"><div class="variable-panel"><span class="overline">DESIGN SYSTEM</span><h2>Consistência é tudo</h2><p>Uma cor. Vários componentes.</p><button class="acao-colorida">Entrar no evento</button></div></main>`,
+    starter:'/* Variável global */\n:root {\n  \n}\n\n/* Reutilize a variável */\n.acao-colorida {\n  \n}',
+    solution:':root {\n  --cor-principal: #8b5cf6;\n}\n\n.acao-colorida {\n  background-color: var(--cor-principal);\n}',
+    hint:'Variáveis CSS começam com -- e são usadas com a função var(). :root representa o elemento raiz.',
+    tests:[{label:'Variável global definida',type:'variable',name:'--cor-principal',value:'#8b5cf6'},test('Botão recebe a cor principal','.acao-colorida','backgroundColor','rgb(139, 92, 246)'),{label:'O botão realmente usa var()',type:'rule-includes',selector:'.acao-colorida',prop:'background-color',value:'var('}]
+  },
+  {
+    title:'Layout para celular',icon:'📱',difficulty:'Avançado',mobile:true,
+    description:'No computador, as seções ficam lado a lado. No celular, devem ser empilhadas.',
+    objective:'Crie uma media query @media (max-width: 480px) que aplique flex-direction: column à classe .layout. Use o botão de visualização para comparar as telas.',
+    html:`<main class="demo"><div class="layout"><article class="layout-pane"><span class="overline">FEED</span><h2>Descubra</h2><p>Novos conteúdos para você.</p></article><aside class="layout-pane alt"><span class="overline">SEGUINDO</span><h2>Conexões</h2><p>Projetos de amigos.</p></aside></div></main>`,
+    starter:'/* Responsividade para telas pequenas */\n@media (max-width: 480px) {\n  .layout {\n    \n  }\n}',
+    solution:'@media (max-width: 480px) {\n  .layout {\n    flex-direction: column;\n  }\n}',
+    hint:'Media queries condicionam regras CSS ao tamanho da tela. Em um contêiner flex, flex-direction: column empilha os filhos.',
+    tests:[test('No celular, os itens ficam em coluna','.layout','flexDirection','column'),{label:'Regra está dentro de @media',type:'media',selector:'.layout',prop:'flex-direction',value:'column'}]
+  },
+  {
+    title:'Foco acessível',icon:'♿',difficulty:'Avançado',
+    description:'Quem navega com teclado precisa identificar facilmente o campo selecionado.',
+    objective:'Na regra .campo:focus, aplique outline: 3px solid #22c55e e outline-offset: 4px.',
+    html:`<main class="demo"><form class="focus-form" onsubmit="return false"><span class="overline">LOGIN / COMUNIDADE</span><h2>Entre na sua conta</h2><label for="usuario">Usuário</label><input id="usuario" class="campo" type="text" placeholder="Seu nome de usuário"><p>Selecione o campo para observar o foco.</p></form></main>`,
+    starter:'/* Destaque o elemento focado */\n.campo:focus {\n  \n}',
+    solution:'.campo:focus {\n  outline: 3px solid #22c55e;\n  outline-offset: 4px;\n}',
+    hint:'outline cria um contorno externo sem alterar o layout; :focus atua quando o campo recebe foco.',
+    tests:[rule('A regra usa :focus','.campo:focus','outline-width','3px'),test('Contorno com 3px','.campo','outlineWidth','3px'),test('Contorno sólido','.campo','outlineStyle','solid'),test('Cor verde no foco','.campo','outlineColor','rgb(34, 197, 94)'),test('Afastamento de 4px','.campo','outlineOffset','4px')]
+  }
+];
+
+
+// Exemplos de uso real: uma demonstração diferente da solução de cada missão.
+const GUIDES = [
+  {
+    "title": "Card de perfil em uma plataforma",
+    "context": "Em uma página de comunidade, você pode criar um card com fundo escuro, letras claras e cantos suaves para destacar um usuário.",
+    "html": "<article class=\"cartao\">\n  <h3>🎮 DevPixel</h3>\n  <p>Designer iniciante</p>\n</article>",
+    "css": ".cartao {\n  background-color: #172554;\n  color: white;\n  border-radius: 12px;\n  padding: 16px;\n}",
+    "why": "O seletor .cartao aplica a mesma identidade visual a qualquer elemento que possua essa classe.",
+    "apply": "Compare o que muda no fundo, na cor das letras e no formato dos cantos."
+  },
+  {
+    "title": "Etiqueta de promoção",
+    "context": "Em lojas virtuais, etiquetas como “OFERTA” ou “LANÇAMENTO” costumam ter borda destacada e formato de cápsula.",
+    "html": "<span class=\"etiqueta\">🏷️ OFERTA</span>",
+    "css": ".etiqueta {\n  display: inline-block;\n  padding: 8px 14px;\n  border: 2px solid #16a34a;\n  border-radius: 999px;\n}",
+    "why": "A borda reúne espessura, estilo e cor; o arredondamento alto deixa o selo oval.",
+    "apply": "Observe a diferença entre a borda (contorno) e o espaço interno do selo."
+  },
+  {
+    "title": "Comentários em uma publicação",
+    "context": "Em uma área de comentários, precisamos afastar o texto das bordas e separar uma mensagem da outra.",
+    "html": "<div class=\"comentario\">Adorei o projeto!</div>\n<div class=\"comentario\">Vou testar também 😎</div>",
+    "css": ".comentario {\n  background: #e0e7ff;\n  padding: 16px;\n  margin-bottom: 12px;\n}",
+    "why": "padding cria espaço dentro do comentário; margin-bottom cria espaço abaixo dele.",
+    "apply": "Imagine retirar o padding: as letras encostariam nas bordas. Sem margin-bottom, as mensagens ficariam coladas."
+  },
+  {
+    "title": "Formulário de cadastro",
+    "context": "Em sites responsivos, um formulário deve usar a largura disponível no celular sem virar uma faixa enorme no computador.",
+    "html": "<form class=\"formulario\">\n  <label>Apelido</label><br>\n  <input placeholder=\"Seu nickname\">\n</form>",
+    "css": ".formulario {\n  width: 100%;\n  max-width: 360px;\n  padding: 18px;\n  border: 1px solid #94a3b8;\n  box-sizing: border-box;\n}",
+    "why": "width: 100% permite encolher; max-width define um limite; border-box mantém padding e borda dentro da largura.",
+    "apply": "Pense em como um mesmo formulário precisa funcionar em celular e notebook."
+  },
+  {
+    "title": "Título de uma notícia",
+    "context": "Em portais de notícias, o título tem mais destaque do que a descrição para indicar a hierarquia do conteúdo.",
+    "html": "<div><h2 class=\"titulo\">Festival de Games</h2>\n<p>Confira os lançamentos da semana.</p></div>",
+    "css": ".titulo {\n  font-size: 28px;\n  font-weight: 700;\n  line-height: 1.3;\n  margin: 0;\n}",
+    "why": "Tamanho e peso criam hierarquia; line-height define a altura de cada linha quando o texto quebra.",
+    "apply": "Repare por que o título chama atenção antes do parágrafo."
+  },
+  {
+    "title": "Primeiro item de um ranking",
+    "context": "Um ranking escolar pode dar um destaque especial ao primeiro colocado sem precisar alterar manualmente o HTML.",
+    "html": "<ol class=\"lista\">\n  <li>🥇 Ana</li><li>🥈 Bruno</li><li>🥉 Caio</li>\n</ol>",
+    "css": ".lista li:first-child {\n  color: #b45309;\n  font-weight: 700;\n}",
+    "why": ":first-child seleciona um li que seja o primeiro filho de seu elemento pai.",
+    "apply": "Confira se apenas o primeiro item mudou. O seletor não precisa de uma classe diferente em cada li."
+  },
+  {
+    "title": "Botão especial de assinatura",
+    "context": "Um aplicativo pode ter vários botões iguais, mas destacar apenas aqueles que também possuem a classe premium.",
+    "html": "<div>\n  <button class=\"botao\">Gratuito</button>\n  <button class=\"botao premium\">Premium</button>\n</div>",
+    "css": ".botao {\n  padding: 9px;\n}\n\n.botao.premium {\n  background: #0f766e;\n  color: white;\n}",
+    "why": ".botao.premium (sem espaço) exige que as duas classes estejam no mesmo elemento.",
+    "apply": "Compare com .botao .premium (com espaço), que procuraria um elemento descendente."
+  },
+  {
+    "title": "Cabeçalho de um portal",
+    "context": "Sites colocam logotipo em uma extremidade e ações de navegação na outra, mantendo ambos alinhados.",
+    "html": "<header class=\"cabecalho\">\n  <strong>★ Portal</strong>\n  <nav>Início · Projetos</nav>\n</header>",
+    "css": ".cabecalho {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 14px;\n  background: #e0e7ff;\n}",
+    "why": "O contêiner organiza seus filhos no eixo principal e centraliza-os no eixo transversal.",
+    "apply": "Identifique o elemento pai: Flexbox é ativado nele, não em cada link do menu."
+  },
+  {
+    "title": "Lista de canais favoritos",
+    "context": "Plataformas de vídeo organizam conteúdos lado a lado e mantêm um espaço constante entre eles.",
+    "html": "<div class=\"canais\">\n  <div>🎥 Filmes</div><div>🎧 Música</div><div>🎮 Games</div>\n</div>",
+    "css": ".canais {\n  display: flex;\n  gap: 16px;\n}\n\n.canais > div {\n  background: #dbeafe;\n  padding: 8px;\n}",
+    "why": "display: flex coloca os filhos em linha por padrão; gap cria espaços apenas entre eles.",
+    "apply": "Observe que gap é aplicado ao pai e não como uma margin diferente em cada cartão."
+  },
+  {
+    "title": "Categorias em uma loja",
+    "context": "Quando a tela fica pequena, etiquetas de categorias devem quebrar para a próxima linha em vez de escapar da página.",
+    "html": "<div class=\"categorias\">\n  <span>Esportes</span><span>Moda</span><span>Games</span><span>Música</span>\n</div>",
+    "css": ".categorias {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n\n.categorias span {\n  flex-basis: 100px;\n  background: #d1fae5;\n}",
+    "why": "flex-wrap permite outras linhas; flex-basis define o tamanho inicial de cada item.",
+    "apply": "Teste reduzir a largura da janela: as etiquetas precisam continuar visíveis."
+  },
+  {
+    "title": "Galeria de projetos",
+    "context": "Uma vitrine de trabalhos pode usar CSS Grid para criar várias colunas do mesmo tamanho.",
+    "html": "<div class=\"vitrine\">\n  <div>🎨 Arte</div><div>📷 Fotos</div>\n  <div>🎬 Vídeo</div><div>💡 Ideias</div>\n</div>",
+    "css": ".vitrine {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 10px;\n}\n\n.vitrine div {\n  background: #e0e7ff;\n  padding: 12px;\n}",
+    "why": "repeat(2, 1fr) divide o espaço em duas colunas iguais. O número de colunas é configurável.",
+    "apply": "Na missão, observe quantos elementos devem caber em cada linha."
+  },
+  {
+    "title": "Painel de dados de um aplicativo",
+    "context": "Em dashboards, indicadores costumam ocupar uma grade que mantém todas as colunas alinhadas.",
+    "html": "<div class=\"indicadores\">\n  <div>📈 120</div><div>❤️ 87</div><div>👁️ 540</div>\n</div>",
+    "css": ".indicadores {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 8px;\n}\n\n.indicadores div {\n  padding: 10px;\n  background: #dbeafe;\n}",
+    "why": "A unidade fr representa uma fração do espaço disponível no Grid.",
+    "apply": "Escolha o número de colunas a partir da quantidade de indicadores por linha."
+  },
+  {
+    "title": "Banner maior que os demais cards",
+    "context": "Em uma página de novidades, o banner principal pode ocupar duas colunas, enquanto notícias menores ocupam apenas uma.",
+    "html": "<div class=\"grade\">\n  <div class=\"banner\">⭐ Destaque</div>\n  <div>🎮 Jogos</div><div>🎧 Música</div>\n</div>",
+    "css": ".grade {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 8px;\n}\n\n.banner {\n  grid-column: span 2;\n  background: #ddd6fe;\n}\n\n.grade div {\n  padding: 12px;\n}",
+    "why": "grid-column informa quantas trilhas um item deve atravessar; span 2 ocupa duas colunas.",
+    "apply": "A missão pede que o destaque atravesse toda a grade. Pense nas linhas que delimitam as colunas."
+  },
+  {
+    "title": "Selo “Novo” sobre um produto",
+    "context": "Em um catálogo de produtos, a etiqueta fica por cima da imagem sem deslocar o conteúdo do card.",
+    "html": "<article class=\"produto\">\n  <span class=\"selo\">NOVO</span>\n  <h3>🎧 Fone Bluetooth</h3>\n  <p>Som sem fios</p>\n</article>",
+    "css": ".produto {\n  position: relative;\n  padding: 20px;\n  background: #e0e7ff;\n}\n\n.selo {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n  background: #fbbf24;\n}",
+    "why": "position: relative cria a referência no pai. O filho absoluto usa top e right em relação a essa caixa.",
+    "apply": "O que aconteceria se o pai não tivesse um posicionamento de referência?"
+  },
+  {
+    "title": "Botão flutuante de ajuda",
+    "context": "Chats e botões de acessibilidade podem acompanhar a janela durante a rolagem da página.",
+    "html": "<main><p>Conteúdo da página</p><button class=\"chat\">💬 Ajuda</button></main>",
+    "css": ".chat {\n  position: fixed;\n  bottom: 12px;\n  left: 12px;\n  padding: 9px;\n  background: #a7f3d0;\n}",
+    "why": "fixed mantém o botão preso à viewport, e não ao lugar original no documento.",
+    "apply": "No desafio, pense em qual canto da janela o suporte precisa permanecer."
+  },
+  {
+    "title": "Foto de avatar sem esticar",
+    "context": "Perfis e catálogos exibem imagens em espaços de tamanhos fixos sem deformar o rosto ou o produto.",
+    "html": "<img class=\"avatar\" src=\"foto.jpg\" alt=\"Imagem de exemplo\">",
+    "css": ".avatar {\n  width: 100%;\n  height: 100px;\n  object-fit: cover;\n  border-radius: 12px;\n}",
+    "why": "cover mantém a proporção e recorta o que não couber; contain mostraria a imagem inteira, talvez com espaços sobrando.",
+    "apply": "Use a área disponível sem achatar ou esticar a imagem."
+  },
+  {
+    "title": "Botão que reage ao mouse",
+    "context": "Botões de aplicativos podem aumentar discretamente ao receber o mouse, comunicando que são clicáveis.",
+    "html": "<button class=\"entrar\">Entrar na comunidade</button>",
+    "css": ".entrar {\n  padding: 12px;\n  background: #7c3aed;\n  color: white;\n  transition: transform 0.2s ease;\n}\n\n.entrar:hover {\n  transform: scale(1.05);\n}",
+    "why": "transition suaviza mudanças. A regra :hover descreve o estado do botão durante a interação com o mouse.",
+    "apply": "Passe o mouse sobre a prévia e observe a diferença entre efeito imediato e transição."
+  },
+  {
+    "title": "Paleta de cores de um site",
+    "context": "Quando um portal usa a mesma cor em títulos, links e botões, uma variável facilita alterações no design.",
+    "html": "<div><h3 class=\"titulo\">Meu portal</h3><button class=\"botao\">Ver mais</button></div>",
+    "css": ":root {\n  --cor-tema: #0f766e;\n}\n\n.titulo {\n  color: var(--cor-tema);\n}\n\n.botao {\n  background: var(--cor-tema);\n  color: white;\n  padding: 9px;\n}",
+    "why": ":root armazena o valor global. var(--cor-tema) reutiliza a mesma cor em seletores diferentes.",
+    "apply": "Observe que basta alterar uma variável para mudar a identidade de vários componentes."
+  },
+  {
+    "title": "Menu responsivo de um aplicativo",
+    "context": "Uma navegação horizontal no computador pode virar uma coluna de links no celular para facilitar os toques.",
+    "html": "<nav class=\"menu\">\n  <a>Início</a><a>Perfil</a><a>Configurações</a>\n</nav>",
+    "css": ".menu {\n  display: flex;\n  gap: 10px;\n}\n\n@media (max-width: 600px) {\n  .menu {\n    flex-direction: column;\n  }\n}",
+    "why": "@media aplica a regra apenas quando a condição da largura da viewport é atendida.",
+    "apply": "Compare a prévia em diferentes larguras. No desafio, use o limite solicitado no enunciado."
+  },
+  {
+    "title": "Campo de pesquisa acessível",
+    "context": "Em formulários e buscas, o usuário deve identificar qual campo está ativo, especialmente ao navegar com a tecla Tab.",
+    "html": "<label for=\"busca\">Buscar projetos</label><br>\n<input id=\"busca\" class=\"pesquisa\" placeholder=\"Pesquisar...\">",
+    "css": ".pesquisa {\n  padding: 10px;\n  margin-top: 8px;\n}\n\n.pesquisa:focus-visible {\n  outline: 2px solid #2563eb;\n  outline-offset: 3px;\n}",
+    "why": "outline desenha um contorno sem mudar o tamanho da caixa. :focus-visible costuma destacar a navegação por teclado.",
+    "apply": "Clique no campo ou use Tab e observe como o contorno indica o foco."
+  }
+];
+
+// Estilos pertencentes somente à demonstração, não contam como resposta.
+const BASE_CSS = `
+*{box-sizing:border-box}
+html{font-family:Arial,Helvetica,sans-serif;background:#f0f4fa;color:#25354d}
+body{margin:0;min-height:100vh;background:linear-gradient(145deg,#f0f4ff,#dce9f5);display:flex;align-items:center;justify-content:center;padding:22px;color:#26354b}
+.demo{width:100%;margin:auto}.demo h2:not(.headline){font-size:23px;line-height:1.25;margin:9px 0}.demo p{font-size:14px;line-height:1.5}.overline{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#687895}.helper-text{color:#64748b;font-size:13px;text-align:center}.emoji-big{font-size:42px;margin:8px 0}.mini-tags{display:flex;gap:7px;margin-top:13px}.mini-tags span{background:#cbd5e1;color:#35465c;padding:4px 9px;border-radius:12px;font-size:10px;font-weight:750}
+.perfil{background:#fff;color:#334155;border-radius:6px;text-align:center;padding:22px 28px;max-width:410px;margin:auto;box-shadow:0 12px 30px #26365a20}.perfil .overline{color:inherit;opacity:.65}
+.medalha{width:max-content;max-width:100%;margin:auto;background:#e9e0ff;color:#5433a0;padding:16px 24px;font-size:26px}.medalha span{font-size:15px;font-weight:850;vertical-align:middle}
+.chat-window{max-width:450px;margin:auto;background:#f9fbff;padding:12px;border-radius:15px}.mensagem{background:#dce9ff;border-radius:12px;margin:0 0 6px}.mensagem p{margin:4px 0 0}.mensagem.secundario{background:#e4fae9}
+.noticia,.event-card,.ranking-box,.ticket-box,.variable-panel,.focus-form{background:white;border-radius:16px;padding:22px;box-shadow:0 12px 28px #1e294b19}.noticia{margin:auto}.fake-link{font-size:12px;color:#6945cd;font-weight:700}.event-card{max-width:480px;margin:auto}.headline{font-size:20px;font-weight:500;margin:9px 0}.demo-button{border:0;border-radius:9px;background:#6553cd;color:white;padding:11px 16px;font-weight:750}
+.ranking-box{max-width:420px;margin:auto}.ranking{list-style:none;margin:14px 0 0;padding:0}.ranking li{font-weight:400;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e5eaf0;padding:12px 8px}.ranking small{font-size:11px;color:#74849d}
+.ticket-box{max-width:500px;margin:auto;text-align:center}.ticket-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:18px}.convite{background:#e2e8f0;color:#26344b;border:0;border-radius:9px;padding:13px 16px;font-weight:700}
+.topo{background:#fff;border-radius:12px;padding:18px;color:#303c53}.topo nav{display:flex;flex-wrap:wrap;gap:13px;font-size:11px;color:#6b7490}.landing-content{text-align:center;padding:22px 0}.landing-content p{color:#6e7d93}
+.small-title{margin:0 0 14px!important;color:#293a56}.mini-card{background:white;border:1px solid #e5e9f3;border-radius:11px;min-width:0;flex:1;text-align:center;padding:19px 8px;font-size:26px}.mini-card strong,.mini-card small{display:block;font-size:12px;margin-top:6px}.mini-card small{color:#8291a8;font-size:11px}.cards-flexiveis{display:flex;gap:5px}.card-flex{min-width:0;background:#fff;border:1px solid #d8e1f0;border-radius:9px;padding:19px 12px;text-align:center;font-weight:750}
+.art-tile{display:grid;place-items:center;min-height:80px;font-size:35px;background:linear-gradient(135deg,#d7d7ff,#b5ecf1);border-radius:12px;margin-bottom:3px}.art-tile:nth-child(2n){background:linear-gradient(135deg,#fce0e4,#e1d5fb)}.stat{background:white;border-radius:12px;padding:18px 15px;margin-bottom:3px;box-shadow:0 3px 10px #1926450c}.stat small,.stat strong{display:block}.stat small{font-size:10px;color:#72839c;letter-spacing:1px}.stat strong{font-size:25px;color:#393977;margin-top:3px}
+.grid-feature{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.feature-card{background:#fff;border-radius:13px;padding:17px;min-width:0;min-height:85px;font-size:28px}.feature-card strong,.feature-card small{display:block;font-size:12px}.feature-card small{color:#71819b;font-size:11px}.card-destaque{background:linear-gradient(110deg,#e5dcff,#c5f3e3)}
+.card-alerta{max-width:420px;margin:auto;background:white;padding:27px;border-radius:16px;box-shadow:0 10px 25px #0002}.notificacao{display:inline-block;background:#fbad4f;color:#58320a;font-size:10px;font-weight:900;padding:7px 11px;border-radius:15px}.site-example{background:white;border-radius:15px;padding:25px}.suporte{background:#674ac6;border:0;border-radius:30px;color:white;padding:12px 19px;font-weight:850;box-shadow:0 4px 20px #5f3fd53d}
+.cover-card{max-width:460px;margin:auto;background:white;padding:13px;border-radius:15px;overflow:hidden;box-shadow:0 12px 28px #283e5717}.capa{display:block;max-width:100%;border-radius:10px}.cover-card h2,.cover-card p{padding:0 7px}.cover-card p{color:#748499}
+.action-display{background:white;border-radius:15px;text-align:center;padding:30px 22px}.botao-acao{border:0;border-radius:9px;background:#6c4ccf;color:#fff;padding:15px 20px;font-size:14px;font-weight:800;margin:10px 0;cursor:pointer}.action-display p{font-size:11px;color:#8995a8}.variable-panel{max-width:440px;margin:auto;text-align:center}.acao-colorida{border:0;border-radius:9px;padding:13px 18px;background:#94a3b8;color:#fff;font-weight:800}
+.layout{display:flex;flex-direction:row;gap:12px}.layout-pane{flex:1;min-width:0;background:white;border-radius:12px;padding:19px}.layout-pane.alt{background:#e3dbff}.layout-pane h2{font-size:20px}.layout-pane p{font-size:12px}
+.focus-form{max-width:420px;margin:auto}.focus-form label{display:block;margin:16px 0 7px;font-size:12px;font-weight:700}.campo{width:100%;border:1px solid #9caac2;padding:12px;border-radius:8px;outline:0}.focus-form p{font-size:11px;color:#7286a3}
+`;
+
+const STORE = 'trilha-css-designweb-v1';
+const $ = (id)=>document.getElementById(id);
+const initial = {index:0,solved:[],assisted:[],codes:{},student:'',group:'',view:window.matchMedia('(max-width: 820px)').matches?'mobile':'desktop'};
+let state = {...initial};
+try {
+  const saved = JSON.parse(localStorage.getItem(STORE) || '{}');
+  if(saved && typeof saved === 'object') {
+    state = {...initial,...saved,solved:Array.isArray(saved.solved)?saved.solved:[],assisted:Array.isArray(saved.assisted)?saved.assisted:[],codes:saved.codes&&typeof saved.codes==='object'?saved.codes:{}};
+    state.index = Math.max(0,Math.min(LEVELS.length-1,Number(state.index)||0));
+  }
+} catch(_error) { /* navegadores com armazenamento desabilitado */ }
+const save = ()=>{try{localStorage.setItem(STORE,JSON.stringify(state));}catch(_error){}};
+
+let currentView = state.view === 'mobile' ? 'mobile':'desktop';
+let pendingPreview;
+function levelModule(levelNumber){return MODULES.find(m=>levelNumber>=m.range[0] && levelNumber<=m.range[1]).name;}
+function renderNav(){
+  $('level-nav').innerHTML = '';
+  MODULES.forEach((module,i)=>{
+    const section=document.createElement('section');section.className='module-group';
+    const caption=document.createElement('div');caption.className='module-name';caption.textContent=`${String(i+1).padStart(2,'0')} / ${module.name}`;section.append(caption);
+    for(let n=module.range[0];n<=module.range[1];n++){
+      const idx=n-1,done=state.solved.includes(n);const item=document.createElement('button');
+      item.type='button';item.className='level-link'+(idx===state.index?' active':'')+(done?' done':'');
+      if(idx===state.index)item.setAttribute('aria-current','step');
+      const num=document.createElement('span');num.className='level-number';num.textContent=String(n).padStart(2,'0');
+      const title=document.createElement('span');title.className='level-title';title.textContent=LEVELS[idx].title;
+      item.append(num,title);
+      if(done){const mark=document.createElement('span');mark.className='level-check';mark.textContent='✓';item.append(mark);}
+      item.addEventListener('click',()=>{goTo(idx);closeMenu();});section.append(item);
+    }
+    $('level-nav').append(section);
+  });
+}
+function updateProgress(){
+  const count=state.solved.length;
+  $('progress-label').textContent=`${count} / ${LEVELS.length}`;
+  $('progress-pct').textContent=`${Math.round(count/LEVELS.length*100)}% concluído`;
+  $('progress-fill').style.width=`${count/LEVELS.length*100}%`;
+  const xp=state.solved.reduce((sum,n)=>sum+(state.assisted.includes(n)?50:100),0);
+  $('xp-count').textContent=`${xp} XP`;
+}
+function frameHtml(level){return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${BASE_CSS}</style><style id="student-style"></style></head><body>${level.html}</body></html>`;}
+function fitPreviewFrame(){
+  const viewport=$('preview-viewport');
+  const frame=$('preview-frame');
+  const virtualWidth=currentView==='mobile'?360:720;
+  const usableWidth=Math.max(160,viewport.clientWidth-20);
+  const scale=Math.min(1,usableWidth/virtualWidth);
+  frame.style.transformOrigin='top left';
+  frame.style.transform=`scale(${scale})`;
+  frame.style.height=`${Math.max(270,(viewport.clientHeight-20)/scale)}px`;
+}
+function setViewport(mode){
+  currentView=mode;state.view=mode;save();
+  const frame=$('preview-frame');
+  frame.style.width=mode==='mobile'?'360px':'720px';frame.style.minWidth=mode==='mobile'?'360px':'720px';
+  $('preview-size').textContent=mode==='mobile'?'360 PX':'720 PX';
+  $('desktop-view').setAttribute('aria-pressed',String(mode==='desktop'));
+  $('mobile-view').setAttribute('aria-pressed',String(mode==='mobile'));
+  $('preview-viewport').scrollLeft=0;
+  fitPreviewFrame();
+}
+function insertStudentCss(){
+  const d=$('preview-frame').contentDocument;
+  const target=d?.getElementById('student-style');
+  if(target)target.textContent=$('css-editor').value;
+}
+function renderLevel(){
+  clearTimeout(pendingPreview);
+  const level=LEVELS[state.index],number=state.index+1,done=state.solved.includes(number);
+  $('breadcrumb-module').textContent=levelModule(number);
+  $('level-count').textContent=`DESAFIO ${String(number).padStart(2,'0')} DE ${LEVELS.length}`;
+  $('level-pill').textContent=`NÍVEL ${String(number).padStart(2,'0')}`;
+  $('difficulty').textContent=level.difficulty.toUpperCase();
+  $('challenge-heading').textContent=level.title;
+  $('challenge-description').textContent=level.description;
+  $('challenge-objective').textContent=level.objective;
+  $('mission-icon').textContent=level.icon;
+  $('css-editor').value=state.codes[number]??level.starter;
+  $('html-source').textContent=level.html.replaceAll('><','>\n<');
+  $('hint-box').hidden=true;
+  $('hint-btn').textContent='💡 Dica + exemplo';
+  $('hint-btn').setAttribute('aria-expanded','false');
+  $('feedback').hidden=true;
+  $('feedback').className='feedback';
+  $('next-btn').hidden=!done;
+  $('next-btn').textContent=number===LEVELS.length?'Ver relatório de conclusão →':'Próximo desafio →';
+  $('solved-badge').hidden=!done;
+  $('preview-frame').onload=()=>insertStudentCss();
+  $('preview-frame').srcdoc=frameHtml(level);
+  setViewport(level.mobile?'mobile':currentView);
+  renderNav();updateProgress();
+}
+function goTo(idx){state.index=Math.max(0,Math.min(LEVELS.length-1,idx));save();renderLevel();window.scrollTo({top:0,behavior:'smooth'});}
+function allStudentRules(doc){
+  const sheet=doc.getElementById('student-style')?.sheet;
+  const collected=[];
+  const descend=(rules,media)=>{
+    for(const r of Array.from(rules||[])){
+      if(r.type===1)collected.push({selector:r.selectorText||'',style:r.style,media});
+      if(r.type===4)descend(r.cssRules,[...media,r.conditionText||'']);
+      if(r.type===12 || r.type===3) {if(r.cssRules)descend(r.cssRules,media);}
+    }
+  };
+  try{descend(sheet?.cssRules||[],[]);}catch(_error){}
+  return collected;
+}
+function cssRuleMatches(testInfo,rules){
+  return rules.some(rule=>{
+    const selectors=rule.selector.split(',').map(x=>x.trim());
+    if(!selectors.includes(testInfo.selector))return false;
+    if(testInfo.type==='media' && !rule.media.some(x=>/max-width/i.test(x)))return false;
+    const raw=rule.style.getPropertyValue(testInfo.prop).trim().toLowerCase().replace(/\s+/g,'');
+    const expected=String(testInfo.value).toLowerCase().replace(/\s+/g,'');
+    return testInfo.type==='rule-includes'?raw.includes(expected):raw===expected;
+  });
+}
+function evaluate(item, doc, rules){
+  const getEl=()=>doc.querySelector(item.selector);
+  try{
+    if(['rule','rule-includes','media'].includes(item.type))return cssRuleMatches(item,rules);
+    if(item.type==='variable')return doc.defaultView.getComputedStyle(doc.documentElement).getPropertyValue(item.name).trim().toLowerCase().replace(/\s/g,'')===item.value;
+    const el=getEl();if(!el)return false;
+    const computed=doc.defaultView.getComputedStyle(el);
+    if(item.type==='columns')return computed.display==='grid'&&computed.gridTemplateColumns.split(/\s+/).filter(Boolean).length===item.value;
+    if(item.type==='near')return Math.abs(parseFloat(computed[item.prop])-item.value)<.25;
+    if(item.type==='style'&&item.value==='100%'&&item.selector==='.capa'&&item.prop==='width')return cssRuleMatches({type:'rule',selector:'.capa',prop:'width',value:'100%'},rules);
+    if(item.type==='not')return computed[item.prop]!==item.value;
+    if(item.type==='style')return computed[item.prop]===item.value;
+  }catch(_error){return false;}
+  return false;
+}
+function showFeedback(success,failed){
+  const box=$('feedback');box.hidden=false;box.className='feedback '+(success?'success':'error');box.replaceChildren();
+  const strong=document.createElement('strong');strong.textContent=success?'✓ Missão concluída!':'Quase lá! Ainda falta ajustar:';box.append(strong);
+  const message=document.createElement('div');message.textContent=success?'Seu código produziu o resultado esperado. Salve o registro no caderno digital e avance para o próximo desafio.':'Confira estas condições antes de tentar novamente:';box.append(message);
+  if(failed.length){const ul=document.createElement('ul');failed.forEach(str=>{const li=document.createElement('li');li.textContent=str;ul.append(li);});box.append(ul);}
+}
+function verify(){
+  clearTimeout(pendingPreview);insertStudentCss();
+  const level=LEVELS[state.index];
+  if(level.mobile)setViewport('mobile');
+  const d=$('preview-frame').contentDocument;
+  if(!d?.getElementById('student-style')){showFeedback(false,['A pré-visualização ainda não carregou. Tente novamente.']);return;}
+  if(level.title==='Foco acessível'){d.querySelector('.campo')?.focus();}
+  requestAnimationFrame(()=>{
+    const rules=allStudentRules(d);
+    const failed=level.tests.filter(item=>!evaluate(item,d,rules)).map(item=>item.label);
+    const success=failed.length===0;
+    showFeedback(success,failed);
+    if(success){const n=state.index+1;if(!state.solved.includes(n))state.solved.push(n);state.solved.sort((a,b)=>a-b);save();updateProgress();renderNav();$('next-btn').hidden=false;$('solved-badge').hidden=false;}
+  });
+}
+function handleEditor(){
+  state.codes[state.index+1]=$('css-editor').value;save();
+  $('feedback').hidden=true;
+  clearTimeout(pendingPreview);
+  pendingPreview=setTimeout(insertStudentCss,120);
+}
+function addGuideText(parent,tag,className,content){
+  const el=document.createElement(tag);
+  if(className)el.className=className;
+  el.textContent=content;
+  parent.append(el);
+  return el;
+}
+function renderGuide(){
+  const box=$('hint-box');
+  box.replaceChildren();
+  const level=LEVELS[state.index],guide=GUIDES[state.index];
+  addGuideText(box,'h3','hint-heading','💡 Entenda e veja na prática');
+  addGuideText(box,'p','hint-concept',level.hint);
+  addGuideText(box,'div','hint-label','🌐 EXEMPLO EM UM SITE REAL');
+  addGuideText(box,'h4','hint-example-title',guide.title);
+  addGuideText(box,'p','hint-context',guide.context);
+  const codeGroup=document.createElement('div');codeGroup.className='hint-snippets';
+  [['HTML',guide.html],['CSS',guide.css]].forEach(([label,code])=>{
+    const pane=document.createElement('div');pane.className='hint-snippet';
+    addGuideText(pane,'div','hint-code-label',label);
+    const pre=document.createElement('pre');
+    const codeEl=document.createElement('code');codeEl.textContent=code;
+    pre.append(codeEl);pane.append(pre);codeGroup.append(pane);
+  });
+  box.append(codeGroup);
+  addGuideText(box,'div','hint-label hint-live-label','▶ VEJA O EXEMPLO FUNCIONANDO');
+  const iframe=document.createElement('iframe');
+  iframe.className='hint-example-preview';
+  iframe.setAttribute('title','Exemplo prático de '+level.title);
+  iframe.setAttribute('sandbox','');
+  const previewHtml=guide.html.replace('src="foto.jpg"',`src="${SVG_COVER}"`);
+  iframe.srcdoc='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box}html{font:14px/1.5 Arial,sans-serif;color:#1e293b;background:#f8fafc}body{margin:0;padding:18px;min-height:100%;}h2,h3,p{margin:0 0 8px}button,input{font:inherit}button{cursor:pointer;border:0;border-radius:6px}a{color:#2563eb;text-decoration:none}</style><style>'+guide.css+'</style></head><body>'+previewHtml+'</body></html>';
+  box.append(iframe);
+  addGuideText(box,'p','hint-why','Por que funciona? '+guide.why);
+  addGuideText(box,'p','hint-apply','🎯 Agora é sua vez: '+guide.apply);
+  addGuideText(box,'p','hint-note','O exemplo demonstra o conceito com outros nomes e valores. Adapte a ideia à sua missão.');
+}
+function showHint(){
+  const box=$('hint-box');box.hidden=!box.hidden;
+  $('hint-btn').setAttribute('aria-expanded',String(!box.hidden));
+  $('hint-btn').textContent=box.hidden?'💡 Dica + exemplo':'Ocultar dica';
+  if(!box.hidden)renderGuide();
+}
+function showSolution(){
+  if(!window.confirm('Exibir a solução completa deste desafio? Ela será registrada como ajuda utilizada no relatório.'))return;
+  const n=state.index+1;if(!state.assisted.includes(n))state.assisted.push(n);
+  $('css-editor').value=LEVELS[state.index].solution;handleEditor();
+  $('hint-box').hidden=false;
+  renderGuide();
+  const notice=document.createElement('p');
+  notice.className='hint-solution-banner';
+  notice.textContent='✓ Solução inserida no editor. Compare com o exemplo, observe a prévia e clique em “Verificar código”.';
+  $('hint-box').prepend(notice);
+  $('hint-btn').textContent='Ocultar dica';
+  $('hint-btn').setAttribute('aria-expanded','true');
+  updateProgress();
+}
+function reportText(){
+  const now=new Date().toLocaleString('pt-BR');
+  const count=state.solved.length;
+  const xp=state.solved.reduce((sum,n)=>sum+(state.assisted.includes(n)?50:100),0);
+  const heading=['TRILHA CSS — RELATÓRIO DO ESTUDANTE',`Emissão: ${now}`,`Nome: ${state.student.trim()||'(não informado)'}`,`Turma: ${state.group.trim()||'(não informada)'}`,`Progresso: ${count} de ${LEVELS.length} desafios (${Math.round(count/LEVELS.length*100)}%)`,`Pontuação: ${xp} XP`,'','DESAFIOS'];
+  const details=LEVELS.map((level,index)=>`${String(index+1).padStart(2,'0')}. ${level.title} — ${state.solved.includes(index+1)?'Concluído'+(state.assisted.includes(index+1)?' (solução consultada)':''):'Pendente'}`);
+  return [...heading,...details,'','Observação: o progresso é armazenado neste navegador. Este relatório é uma declaração de atividade e não substitui as evidências solicitadas pelo docente.'].join('\n');
+}
+function reportHTML(){
+  const done=state.solved.length;
+  $('report-summary').replaceChildren();
+  const title=document.createElement('div');title.innerHTML=`<b>${done} de ${LEVELS.length} desafios concluídos</b> · ${Math.round(done/LEVELS.length*100)}% da trilha`;
+  const list=document.createElement('ul');
+  MODULES.forEach(mod=>{const li=document.createElement('li');const count=Array.from({length:mod.range[1]-mod.range[0]+1},(_,i)=>mod.range[0]+i).filter(n=>state.solved.includes(n)).length;li.textContent=`${mod.name}: ${count}/${mod.range[1]-mod.range[0]+1}`;list.append(li);});
+  $('report-summary').append(title,list);
+}
+function openReport(){ $('student-name').value=state.student;$('student-class').value=state.group;reportHTML();$('report-note').textContent='';$('report-dialog').showModal();}
+function syncReport(){state.student=$('student-name').value;state.group=$('student-class').value;save();}
+function downloadReport(){syncReport();const blob=new Blob([reportText()],{type:'text/plain;charset=utf-8'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='relatorio-trilha-css.txt';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),1500);$('report-note').textContent='Relatório gerado com sucesso.';}
+async function copyReport(){syncReport();try{await navigator.clipboard.writeText(reportText());$('report-note').textContent='Resumo copiado para a área de transferência.';}catch(_error){$('report-note').textContent='Não foi possível copiar automaticamente. Use “Baixar relatório”.';}}
+function openMenu(){ $('sidebar').classList.add('open');$('mobile-overlay').hidden=false;$('mobile-menu').setAttribute('aria-expanded','true'); }
+function closeMenu(){ $('sidebar').classList.remove('open');$('mobile-overlay').hidden=true;$('mobile-menu').setAttribute('aria-expanded','false'); }
+
+$('css-editor').addEventListener('input',handleEditor);
+$('css-editor').addEventListener('keydown',event=>{
+  if(event.key==='Tab'){
+    event.preventDefault();const el=event.target,start=el.selectionStart,end=el.selectionEnd;
+    el.value=el.value.substring(0,start)+'  '+el.value.substring(end);el.selectionStart=el.selectionEnd=start+2;handleEditor();
+  }
+  if(event.key==='Enter'&&(event.ctrlKey||event.metaKey)){event.preventDefault();verify();}
+});
+$('check-btn').addEventListener('click',verify);
+$('hint-btn').addEventListener('click',showHint);
+$('solution-btn').addEventListener('click',showSolution);
+$('next-btn').addEventListener('click',()=>state.index===LEVELS.length-1?openReport():goTo(state.index+1));
+$('desktop-view').addEventListener('click',()=>setViewport('desktop'));
+$('mobile-view').addEventListener('click',()=>setViewport('mobile'));
+$('reset-progress').addEventListener('click',()=>{
+  if(!window.confirm('Reiniciar os desafios e apagar o progresso salvo neste navegador?'))return;
+  state={...initial,solved:[],assisted:[],codes:{}};currentView='desktop';save();goTo(0);
+});
+$('report-btn').addEventListener('click',openReport);
+$('copy-report').addEventListener('click',copyReport);
+$('download-report').addEventListener('click',downloadReport);
+$('student-name').addEventListener('input',syncReport);
+$('student-class').addEventListener('input',syncReport);
+$('mobile-menu').addEventListener('click',()=> $('sidebar').classList.contains('open')?closeMenu():openMenu());
+$('mobile-overlay').addEventListener('click',closeMenu);
+window.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
+window.addEventListener('resize',fitPreviewFrame);
+renderLevel();
+
+</script>
+</body>
+</html>
